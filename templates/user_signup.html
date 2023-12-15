@@ -1,0 +1,78 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+    <style>
+        body{
+          background-color: aqua;
+          justify-content: center;
+          
+        }
+        #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto; /* Push the footer to the bottom */
+    }
+      </style>
+      <div class="container">
+          <div class="row">
+            
+          <div class="col-md-4"></div>
+          
+          
+          <div class="col-md-4" style="margin-top: 7%;">
+            <div class="col-md-4">{% for message in messages %}
+                <h5>
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                </h5>
+                {% endfor %}</div>
+      <form method="post" action="{% url 'add_user' %}" enctype="multipart/form-data" style="background-color: rgb(250, 250, 250); height: 900px;width: 500px; padding-top: 10px; border-radius: 10px;padding-left: 20px;padding-right: 20px;">
+          {% csrf_token %}
+          
+          <div class="form-outline">
+            <h3 style="text-align: center;justify-content: center;">User Registration</h3>
+            <input type="text" name="first_name"  class="form-control" placeholder="First Name" /> <br>
+          </div>
+          <div class="form-outline ">
+            <input type="address" name="last_name" class="form-control" placeholder="Last Name" /><br>
+          </div>
+          <div class="form-outline ">
+            <input type="text" name="uname" class="form-control" placeholder="Username" /><br>
+          </div>
+          <div class="form-outline ">
+            <input type="password" name="password" class="form-control" placeholder="Password" /><br>
+          </div>
+          <div class="form-outline ">
+            <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password" /><br>
+          </div>
+          <div class="form-outline ">
+            <input type="text" name="address" class="form-control" placeholder="Address" /><br>
+          </div>
+          <div class="form-outline ">
+            <input type="email" name="email" class="form-control" placeholder="Email" /><br>
+          </div>
+          <div class="form-outline ">
+            <input type="text" name="number" class="form-control" placeholder="Contact Number" /><br>
+          </div>
+          <div class="form-outline ">
+            Upload Your Photo
+            <input type="file" name="file" class="form-control mt-3" accept="image/*">
+          </div> <br>
+          <button type="submit" class="btn btn-primary btn-block " style="border-radius: 30px;">Submit</button>
+        
+         
+        </form>
+      </div>
+        <div class="col-md-4"></div>
+      </div>
+      </div>
+      <footer class="footer" id="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 E-Commerce.In</p>
+        </div>
+    </footer>
+      {% endblock %}

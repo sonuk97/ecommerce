@@ -1,0 +1,61 @@
+{% extends 'navbar_admin.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        background-color: aqua;
+    }
+
+    #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto;
+    }
+
+    .main-content {
+        flex-grow: 1; /* Take up remaining vertical space */
+    }
+
+    .form-container {
+        margin-top: 10%;
+        text-align: center;
+        justify-content: center;
+        margin-left: 30%;
+    }
+</style>
+<div class="container main-content">
+    <div class="col-md-12">
+        {% for message in messages %}
+            <h5>
+                <div class="alert alert-danger" style="text-align: center; justify-content: center;">
+                    {{message}}
+                </div>
+            </h5>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-container">
+            <form method="post" action="{% url 'addc' %}" style="background-color: rgb(250, 250, 250); height: 200px; padding-top: 10px; border-radius: 10px; padding-left: 20px; padding-right: 20px;">
+                {% csrf_token %}
+                <div class="form-outline">
+                    <h3 style="text-align: center; justify-content: center;">Add Category</h3>
+                    <input type="text" name="cname" class="form-control" placeholder="Enter Category" /> <br>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="border-radius: 30px;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<footer class="footer" id="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 E-Commerce.In</p>
+    </div>
+</footer>
+{% endblock %}

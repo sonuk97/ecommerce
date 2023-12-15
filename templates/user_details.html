@@ -1,0 +1,75 @@
+{% extends 'navbar_admin.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        
+    }
+
+    img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .content-wrapper {
+        flex-grow: 1; /* Take up remaining vertical space */
+    }
+
+    #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+    }
+</style>
+
+<div class="container content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact Number</th>
+                        <th scope="col">E-MAil</th>
+                        <th scope="col">Profile Picture</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in mem %}
+                        <tr>
+                            <td class="pt-4">{{ user.user.username }}</td>
+                            <td class="pt-4">{{ user.address }}</td>
+                            <td class="pt-4">{{ user.number }}</td>
+                            <td class="pt-4">{{ user.user.email }}</td>
+                            <td class="pt-4">
+                                {% if user.image %}
+                                    <img src="{{ user.image.url }}" style="height: 100px; width: 100px;">
+                                {% else %}
+                                    No image available
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a role="button" class="btn btn-light btn-sm" href="{% url 'delete_user' user.id %}">delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer class="footer" id="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 E-Commerce.In</p>
+    </div>
+</footer>
+{% endblock %}

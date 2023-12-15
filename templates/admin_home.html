@@ -1,0 +1,45 @@
+{% extends 'navbar_admin.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        background-color: aqua;
+    }
+
+    #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto; /* Push the footer to the bottom */
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for message in messages %}
+                <h5>
+                    <div class="alert alert-danger">
+                        {{message}}
+                    </div>
+                </h5>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center; justify-content: center; margin-top: 20%;">
+            <h1>WELCOME ADMIN</h1>
+        </div>
+    </div>
+</div>
+<footer class="footer" id="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 E-Commerce.In</p>
+    </div>
+</footer>
+{% endblock %}

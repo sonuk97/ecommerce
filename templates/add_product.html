@@ -1,0 +1,72 @@
+{% extends 'navbar_admin.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body{
+      background-color: aqua;
+      justify-content: center;
+      
+    }
+    #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto; /* Push the footer to the bottom */
+    }
+  </style>
+  <div class="container">
+      <div class="row">
+        
+      <div class="col-md-4"></div>
+      
+      
+      <div class="col-md-4" style="margin-top: 7%;">
+        <div class="col-md-12">{% for message in messages %}
+            <h5>
+                <div class="alert alert-danger">
+                    {{message}}
+                </div>
+            </h5>
+            {% endfor %}</div>
+  <form method="post" action="{% url 'add_pro' %}" enctype="multipart/form-data" style="background-color: rgb(250, 250, 250); height: 600px;width: 500px; padding-top: 10px; border-radius: 10px;padding-left: 20px;padding-right: 20px;margin-bottom: 50px;">
+      {% csrf_token %}
+      
+      <div class="form-outline">
+        <h3 style="text-align: center;justify-content: center;">Add Product</h3>
+        <input type="text" name="pname"  class="form-control" placeholder="Product Name" /> <br>
+      </div>
+      <div class="form-outline ">
+        <input type="address" name="pdes" class="form-control" placeholder="Description" /><br>
+      </div>
+      <div class="form-outline ">
+        <select name="sel" class="form-control">
+         <option value="">Select Category</option>
+         {% for c in cat %}
+         <option value="{{c.id}}">{{c.category_name}}</option>
+         {% endfor %}
+        </select>
+       </div> <br>
+      <div class="form-outline ">
+        <input type="number" name="price " class="form-control" placeholder="Price" /><br>
+      </div>
+      <div class="form-outline ">
+        Upload Photo
+        <input type="file" name="file" class="form-control mt-3" accept="image/*">
+      </div> <br>
+       
+      <button type="submit" class="btn btn-primary btn-block " style="border-radius: 30px;">Submit</button>
+    
+     
+    </form>
+  </div>
+    <div class="col-md-4"></div>
+  </div>
+  </div>
+  <footer class="footer" id="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 E-Commerce.In</p>
+    </div>
+</footer>
+{% endblock %}

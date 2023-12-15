@@ -1,0 +1,58 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto; /* Push the footer to the bottom */
+    }
+</style>
+<div class="container mt-4 flex-grow-1">
+    <div class="col-md-12">
+        {% for message in messages %}
+        <h5>
+            <div class="alert alert-danger" style="text-align: center; justify-content: center;">
+                {{message}}
+            </div>
+        </h5>
+        {% endfor %}
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" style="width: 75%;">
+                <div class="card-body">
+                    <h2 class="card-title">Sign In</h2>
+                    <form action="{% url 'log_in' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="****">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <p class="mt-2">Don't have an account? <a href="">Sign up</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer" id="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 E-Commerce.In</p>
+    </div>
+</footer>
+{% endblock %}

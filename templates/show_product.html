@@ -1,0 +1,63 @@
+{% extends 'navbar_admin.html' %}
+{% block content %}
+{% load static %}
+<style>
+    img {
+        height: 100px;
+        width: 100px;
+    }
+    #footer {
+        background-color: #098f72;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto; /* Push the footer to the bottom */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Product Price</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in prod %}
+                        <tr>
+                            <td class="pt-4">{{ product.name }}</td>
+                            <td class="pt-4">{{ product.description }}</td>
+                            <td class="pt-4">{{ product.price }}</td>
+                            <td class="pt-4">{{ product.category.category_name }}</td>
+                            <td class="pt-4">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}"  style="height: 100px; width: 100px;">
+                                {% else %}
+                                    No image available
+                                {% endif %}
+                            </td>
+                            <td>
+                                
+                                <a role="button" class="btn btn-light btn-sm" href="{% url 'delete_prod' product.id %}">delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer class="footer" id="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 E-Commerce.In</p>
+    </div>
+</footer>
+{% endblock %}
